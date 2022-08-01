@@ -2,6 +2,7 @@ class SessionsController < ApplicationController
     before_action :require_logged_in, only: [:destroy]
 
     def new
+        @user = User.new
     end 
 
     def create 
@@ -10,6 +11,7 @@ class SessionsController < ApplicationController
             login(@user)
             redirect_to users_url
         else 
+            @user = User.new(username: params[:user][:username])
             flash.now[:errors] = ["Invalid username or password"]
             render :new
         end 

@@ -36,6 +36,7 @@ class BooksController < ApplicationController
         @book = current_user.books.find_by(id: params[:id])
         if @book && @book.destroy
         redirect_to user_url(@book.user_id)
+        end
     end 
 
     private

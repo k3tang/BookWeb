@@ -5,8 +5,8 @@ Rails.application.routes.draw do
   # root "articles#index"
 
   resources :users do 
-    resources :books, except: [:destroy]
+    resources :books, only:[:new, :create, :index]
   end 
-  resources :books, only: [:destroy]
+  resources :books, only: [:destroy, :show, :edit, :update]
   resource :session, only: [:new, :create, :destroy]
 end

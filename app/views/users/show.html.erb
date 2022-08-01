@@ -1,1 +1,34 @@
-<h1><%= @user.nickname %>'s Books</h1>
+<h1><%= @user.nickname.capitalize %>'s Books</h1>
+
+<form action="<%= new_user_book_url(@user) %>" method="POST">
+    <input type="hidden" name="_method" value="GET">
+    <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+    <button>Add A New Book</button>
+</form>
+
+
+<% @user.books.each do |book| %>
+    <%= book.title %>
+    <%= book.author %>
+    <%= book.rating %>
+    <%= book.f_date %>
+    <form action="<%= book_url(book) %>" method="POST">
+        <input type="hidden" name="_method" value="GET">
+        <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+        <button>Book Details</button>
+    </form>
+
+       <form action="<%= edit_book_url(book) %>" method="POST">
+        <input type="hidden" name="_method" value="GET">
+        <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+        <button>Edit Book</button>
+    </form>
+
+
+     <form action="<%= book_url(book) %>" method="POST">
+        <input type="hidden" name="_method" value="DELETE">
+        <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+        <button>Delete Book</button>
+    </form>
+    
+<% end %>
