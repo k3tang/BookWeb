@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :shelves
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   # Defines the root path route ("/")
@@ -9,4 +10,8 @@ Rails.application.routes.draw do
   end 
   resources :books, only: [:destroy, :show, :edit, :update]
   resource :session, only: [:new, :create, :destroy]
+
+  get "/search", to: "searches#search_google_engine"
 end
+
+

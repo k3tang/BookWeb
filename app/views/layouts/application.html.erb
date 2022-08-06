@@ -13,6 +13,8 @@
   <body>
   
   <% if flash[:errors] %>
+
+    <%= render 'layouts/nav' %>
   
     <% flash[:errors].each do |error| %>
         <%= error %>
@@ -24,17 +26,9 @@
 
   <% if logged_in?%>
   
-    <form action="<%= users_url %>" method="POST">
-      <input type="hidden" name="_method" value="GET">
-      <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
-      <button>Home</button>
-    </form>
+    <a href="<%= users_url %>" data-method="get">Home</a>
 
-    <form action="<%= session_url %>" method="POST">
-      <input type="hidden" name="_method" value="DELETE">
-      <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
-      <button>Sign Out</button>
-    </form>
+   <a href="<%= session_url %>" data-method="delete">Sign Out</a>
   <% end %>
 
     <%= yield %>

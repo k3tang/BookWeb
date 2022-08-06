@@ -1,5 +1,14 @@
 class BooksController < ApplicationController
+
     before_action :require_logged_in
+
+
+    def get_books
+        url = " "
+        response = RestClient.get(url)
+        @books = JSON.parse(response.body)
+        render :books
+    end 
 
     def new
         @book = Book.new
@@ -7,7 +16,7 @@ class BooksController < ApplicationController
     end 
 
     def create
-        @book = Book.create(book_params)
+        @book = Book.new(book_params)
         @book.user_id = params[:user_id]
         if @book.save
         else
@@ -41,6 +50,6 @@ class BooksController < ApplicationController
 
     private
     def book_params
-        params.require(:book).permit(:title, :ISBN, :author, :pages, :f_date, :rating, :review_title, :review)
+        params.require(:book).permit(:title, :author)
     end 
 end

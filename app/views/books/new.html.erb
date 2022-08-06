@@ -1,1 +1,28 @@
 <h1>Add a Book</h1>
+
+<form action="<%= user_books_url %>" method="POST">
+    <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+
+<%# search function needed to find by title and other details %>
+    <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+    <label class="title">Title:
+        <input type="text" name="book[title]" value="<%= @book.title %>">
+    </label>
+
+     <label class="author">Author:
+        <input type="text" name="book[author]" value="<%= @book.author %>">
+    </label>
+
+    <%# <label class="rating">Rating:
+    <input 
+        type="range"
+        class="rating"
+        max="5"
+        oninput="this.style.setProperty('--value', this.value)" 
+        step="0.5"
+        value="1">
+    </label> %>
+<%# oninput - the input is grabbed and the "value" is set as a css custom propret "--value", javascript %>
+    <button>Add Book</button>
+
+</form>
