@@ -1,8 +1,7 @@
 
 class GoogleApi
     BASE_URL = "https://www.googleapis.com/books/v1/volumes?"
-    API_KEY = "key=AIzaSyCy6-GACwsQWqMgQeWRYkqQpbTw6yEf2Vc"
-
+   
     def query 
         request = Faraday.get(BASE_URL+@search_format+API_KEY)
         JSON.parse(request.body)
